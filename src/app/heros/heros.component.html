@@ -9,9 +9,10 @@
 
 <div *ngIf="selectedHero">
 
-<h3>Selected Hero</h3>
+<!-- <h3>Selected Hero</h3>
 <span class="badge">{{selectedHero.id}} </span>
-<span class="name">{{selectedHero.name}}</span>
+<span class="name">{{selectedHero.name}}</span> -->
+<app-hero-details [hero]="selectedHero"></app-hero-details>
 </div>
 
 
