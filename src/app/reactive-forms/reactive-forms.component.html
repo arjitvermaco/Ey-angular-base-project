@@ -1,4 +1,15 @@
 <p>reactive-forms works!</p>
 
+<!-- <label for="name">Name: </label>
+<input id="name" type="text" [formControl]="name"> -->
+<!-- <button (click)="onBtnClick()">Go to Child Page</button> -->
 
-<button (click)="onBtnClick()">Go to Child Page</button>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName">
+  
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+    <button type="submit">Submit</button>
+</form>
+

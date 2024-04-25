@@ -1,1 +1,6 @@
-<p>template-forms works!</p>
+<h3>Template Forms</h3>
+<form (submit)="onFormSubmit()">
+    <input [(ngModel)]="inputName" type="text" name="username">
+    <input [(ngModel)]="inputEmail"  type="email" name="email">
+    <button type="submit">Submit</button>
+</form>
