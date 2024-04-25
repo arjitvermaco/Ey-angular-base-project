@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -9,4 +10,11 @@ import { Component } from '@angular/core';
 })
 export class ReactiveFormsComponent {
 
+  constructor(private router:Router){
+
+  }
+
+  onBtnClick(){
+    this.router.navigate(['/child'])
+  }
 }
