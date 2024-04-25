@@ -1,6 +1,27 @@
 <h3>Template Forms</h3>
 <form (submit)="onFormSubmit()">
-    <input [(ngModel)]="inputName" type="text" name="username">
-    <input [(ngModel)]="inputEmail"  type="email" name="email">
-    <button type="submit">Submit</button>
+  <input [(ngModel)]="inputName" type="text" name="username" />
+  <input
+    [(ngModel)]="inputEmail"
+    #email="ngModel"
+    required
+    minlength="4"
+    type="email"
+    name="email"
+  />
+  <div *ngIf="email.invalid && (email.dirty || email.touched)">
+    <div *ngIf="email.errors?.['required']">Email is required</div>
+    <div *ngIf="email.errors?.['minlength']">
+      Email should have a min len of 4
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+
+  <div>
+    <h4>Email properties</h4>
+
+    Touched: {{ email.touched }} <br />
+    Dirty: {{ email.dirty }} <br />
+    Invalid: {{ email.invalid }} <br />
+  </div>
 </form>
