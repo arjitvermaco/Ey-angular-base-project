@@ -5,11 +5,28 @@
 <!-- <button (click)="onBtnClick()">Go to Child Page</button> -->
 
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <label for="first-name">First Name: </label>
-    <input id="first-name" type="text" formControlName="firstName">
-  
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
-    <button type="submit">Submit</button>
-</form>
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName" />
+  <div
+    *ngIf="
+      profileForm.controls.firstName.invalid &&
+      (profileForm.controls.firstName.dirty ||
+        profileForm.controls.firstName.touched)
+    "
+  >
+    <p>Firstname is not valid</p>
+  </div>
 
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName" />
+  <div
+    *ngIf="
+      profileForm.controls.lastName.invalid &&
+      (profileForm.controls.lastName.dirty ||
+        profileForm.controls.lastName.touched)
+    "
+  >
+    <p>Firstname is not valid</p>
+  </div>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>

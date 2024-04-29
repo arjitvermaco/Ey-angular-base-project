@@ -1,37 +1,51 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reactive-forms',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './reactive-forms.component.html',
-  styleUrl: './reactive-forms.component.css'
+  styleUrl: './reactive-forms.component.css',
 })
-export class ReactiveFormsComponent {
-
+export class ReactiveFormsComponent implements OnInit {
   name = new FormControl('')
 
   profileForm = new FormGroup({
-    firstName : new FormControl(''),
-    lastName : new FormControl('')
-
+    firstName : new FormControl('',[
+      Validators.required,
+      Validators.minLength(5)
+    ]),
+    lastName : new FormControl('',[
+      Validators.required,
+      Validators.minLength(5)
+    ])
   })
 
-  constructor(private router:Router){
+  registerForm: any;
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // this.registerForm = new FormGroup({
+    //   firstName: new FormControl((this.hero.name,[
+    //     Validators.required,
+    //     Validators.minLength(4)
+    //   ])),
+    // });
   }
 
-  onBtnClick(){
-    this.router.navigate(['/child'])
+  onBtnClick() {
+    this.router.navigate(['/child']);
   }
 
-  onSubmit(){
-    console.log("Form was submitted")
-    console.log(this.profileForm.value)
+  onSubmit() {
+    console.log('Form was submitted');
+    console.log(this.profileForm.value);
   }
-  updateName(){
-    this.name.setValue("John")
+  updateName() {
+    this.name.setValue('John');
   }
 }
